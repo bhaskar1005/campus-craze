@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Craze</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>🎓 Campus Craze</h1>
+    <p>Our Memories • Our Campus • Our Moments 📸🎥</p>
+  </header>
+
+  <main>
+
+```
+<section class="hero">
+  <h2>Welcome to Campus Craze ❤️</h2>
+  <p>Share your beautiful campus photos and videos with everyone.</p>
+</section>
+
+<section class="upload-box">
+
+  <h2>📤 Upload Photo / Video</h2>
+
+  <input
+    type="file"
+    id="mediaFile"
+    accept="image/*,video/*"
+  >
+
+  <button id="uploadButton">
+    Upload 🚀
+  </button>
+
+  <p id="uploadStatus"></p>
+
+</section>
+
+<section class="gallery-section">
+
+  <div class="gallery-header">
+    <h2>🖼️ Campus Gallery</h2>
+
+    <button id="refreshButton">
+      🔄 Refresh
+    </button>
+  </div>
+
+  <div id="gallery">
+    <p>Loading gallery...</p>
+  </div>
+
+</section>
+```
+
+  </main>
+
+  <footer>
+    <p>© 2026 Campus Craze</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
