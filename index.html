@@ -1,6 +1,7 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,101 +14,140 @@
 <body>
 
   <header class="top-header">
+
     <div class="brand">
+
       <div class="logo">🎓</div>
+
       <div>
         <h1>Campus Craze</h1>
         <p>Our Memories • Our Campus • Our Moments</p>
       </div>
+
     </div>
+
   </header>
+
 
   <main>
 
-```
-<section class="hero">
-  <div class="hero-content">
-    <span class="badge">📸 CAMPUS MEMORIES</span>
+    <!-- HERO SECTION -->
 
-    <h2>Capture the Moments.<br>Keep the Memories.</h2>
+    <section class="hero">
 
-    <p>
-      Share your favourite campus photos and videos
-      with everyone.
-    </p>
+      <div class="hero-content">
 
-    <a href="#upload" class="hero-button">
-      📤 Upload Memories
-    </a>
-  </div>
-</section>
+        <span class="badge">
+          📸 CAMPUS MEMORIES
+        </span>
 
+        <h2>
+          Capture the Moments.<br>
+          Keep the Memories.
+        </h2>
 
-<section class="upload-box" id="upload">
+        <p>
+          Share your favourite campus photos and videos
+          with everyone.
+        </p>
 
-  <div class="section-title">
-    <span>📤</span>
-    <div>
-      <h2>Upload Photo / Video</h2>
-      <p>Share a memory from our campus</p>
-    </div>
-  </div>
-
-  <input
-    type="file"
-    id="mediaFile"
-    accept="image/*,video/*"
-  >
-
-  <button id="uploadButton">
-    🚀 Upload Now
-  </button>
-
-  <p id="uploadStatus"></p>
-
-</section>
-
-
-<section class="gallery-section">
-
-  <div class="gallery-header">
-
-    <div class="section-title">
-      <span>🖼️</span>
-      <div>
-        <h2>Campus Gallery</h2>
-        <p>Our shared memories</p>
       </div>
-    </div>
 
-    <button id="refreshButton">
-      🔄 Refresh
-    </button>
+    </section>
 
-  </div>
 
-  <div id="gallery">
-    <p>Loading gallery... ⏳</p>
-  </div>
+    <!-- UPLOAD SECTION -->
 
-</section>
-```
+    <section class="upload-box" id="upload">
+
+      <div class="section-title">
+
+        <span>📤</span>
+
+        <div>
+          <h2>Upload Photo / Video</h2>
+          <p>Share a memory from our campus</p>
+        </div>
+
+      </div>
+
+
+      <input
+        type="file"
+        id="mediaFile"
+        accept="image/*,video/*"
+      >
+
+
+      <button id="uploadButton">
+        🚀 Upload Now
+      </button>
+
+
+      <p id="uploadStatus"></p>
+
+    </section>
+
+
+    <!-- GALLERY SECTION -->
+
+    <section class="gallery-section">
+
+      <div class="gallery-header">
+
+        <div class="section-title">
+
+          <span>🖼️</span>
+
+          <div>
+            <h2>Campus Gallery</h2>
+            <p>Our shared memories</p>
+          </div>
+
+        </div>
+
+
+        <button id="refreshButton">
+          🔄 Refresh
+        </button>
+
+      </div>
+
+
+      <div id="gallery">
+        <p>Loading gallery... ⏳</p>
+      </div>
+
+    </section>
 
   </main>
 
+
+  <!-- FOOTER -->
+
   <footer>
+
     <h3>🎓 Campus Craze</h3>
-    <p>Made with ❤️ for our campus memories</p>
-    <p>© 2026 Campus Craze</p>
+
+    <p>
+      Made with ❤️ for our campus memories
+    </p>
+
+    <p>
+      © 2026 Campus Craze
+    </p>
+
   </footer>
 
-  <!-- Supabase -->
+
+  <!-- SUPABASE -->
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- Website JavaScript -->
+  <!-- WEBSITE JAVASCRIPT -->
 
   <script src="./script.js"></script>
 
 </body>
+
 </html>
