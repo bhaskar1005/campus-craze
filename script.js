@@ -25,61 +25,98 @@ const adminLoginButton = document.getElementById("adminLoginButton");
 const adminLogoutButton = document.getElementById("adminLogoutButton");
 const adminStatus = document.getElementById("adminStatus");
 
-
 let isAdmin = false;
 
 
 /* =========================
-   UPLOAD
+   MULTIPLE FILE UPLOAD
 ========================= */
 
 async function uploadMedia() {
 
-  const file = fileInput.files[0];
+  const files = Array.from(fileInput.files);
 
-  if (!file) {
+  if (files.length === 0) {
     uploadStatus.textContent =
-      "Please select a photo or video.";
+      "Please select photo(s) or video(s).";
     return;
   }
 
   uploadButton.disabled = true;
 
+  let successCount = 0;
+  let failedCount = 0;
+
   uploadStatus.textContent =
-    "Uploading... ⏳";
+    `Uploading 0 / ${files.length}... ⏳`;
 
   try {
 
-    const safeName =
-      file.name.replace(
-        /[^a-zA-Z0-9._-]/g,
-        "_"
-      );
+    for (let i = 0; i < files.length; i++) {
 
-    const filePath =
-      Date.now() + "-" + safeName;
+      const file = files[i];
 
-
-    const { error } =
-      await supabaseClient.storage
-        .from(BUCKET)
-        .upload(
-          filePath,
-          file,
-          {
-            cacheControl: "3600",
-            upsert: false
-          }
+      const safeName =
+        file.name.replace(
+          /[^a-zA-Z0-9._-]/g,
+          "_"
         );
 
+      const filePath =
+        Date.now() +
+        "-" +
+        i +
+        "-" +
+        safeName;
 
-    if (error) {
-      throw error;
+
+      const { error } =
+        await supabaseClient.storage
+          .from(BUCKET)
+          .upload(
+            filePath,
+            file,
+            {
+              cacheControl: "3600",
+              upsert: false,
+              contentType: file.type
+            }
+          );
+
+
+      if (error) {
+
+        console.error(
+          "Upload failed:",
+          file.name,
+          error
+        );
+
+        failedCount++;
+
+      } else {
+
+        successCount++;
+
+      }
+
+
+      uploadStatus.textContent =
+        `Uploading ${i + 1} / ${files.length}... ⏳`;
     }
 
 
-    uploadStatus.textContent =
-      "Upload successful! 🎉";
+    if (failedCount === 0) {
+
+      uploadStatus.textContent =
+        `🎉 ${successCount} file(s) uploaded successfully!`;
+
+    } else {
+
+      uploadStatus.textContent =
+        `✅ ${successCount} uploaded • ❌ ${failedCount} failed`;
+    }
+
 
     fileInput.value = "";
 
@@ -93,7 +130,6 @@ async function uploadMedia() {
     uploadStatus.textContent =
       "Upload failed ❌ " +
       error.message;
-
 
   } finally {
 
@@ -183,12 +219,15 @@ async function loadGallery() {
 
         img.src = url;
 
-        img.alt = "Campus memory";
+        img.alt =
+          "Campus memory";
 
-        img.loading = "lazy";
+        img.loading =
+          "lazy";
 
         img.title =
           "Click to view full screen";
+
 
         img.addEventListener(
           "click",
@@ -197,6 +236,7 @@ async function loadGallery() {
             "image"
           )
         );
+
 
         item.appendChild(img);
 
@@ -217,9 +257,12 @@ async function loadGallery() {
 
         video.src = url;
 
-        video.controls = true;
+        video.controls =
+          true;
 
-        video.preload = "metadata";
+        video.preload =
+          "metadata";
+
 
         item.appendChild(video);
 
@@ -233,7 +276,9 @@ async function loadGallery() {
       if (file.created_at) {
 
         const date =
-          new Date(file.created_at);
+          new Date(
+            file.created_at
+          );
 
 
         const dateElement =
@@ -277,11 +322,14 @@ async function loadGallery() {
       const download =
         document.createElement("a");
 
-      download.href = url;
+      download.href =
+        url;
 
-      download.target = "_blank";
+      download.target =
+        "_blank";
 
-      download.rel = "noopener";
+      download.rel =
+        "noopener";
 
       download.className =
         "download-button";
@@ -326,7 +374,9 @@ async function loadGallery() {
       }
 
 
-      gallery.appendChild(item);
+      gallery.appendChild(
+        item
+      );
 
     });
 
@@ -424,7 +474,8 @@ async function adminLogin() {
   }
 
 
-  adminLoginButton.disabled = true;
+  adminLoginButton.disabled =
+    true;
 
   adminStatus.textContent =
     "Logging in... ⏳";
@@ -446,9 +497,11 @@ async function adminLogin() {
 
 
     if (!data.session) {
+
       throw new Error(
         "Login session not created."
       );
+
     }
 
 
@@ -459,9 +512,11 @@ async function adminLogin() {
       "Admin login successful! 🔐";
 
 
-    adminEmail.value = "";
+    adminEmail.value =
+      "";
 
-    adminPassword.value = "";
+    adminPassword.value =
+      "";
 
 
     adminLoginButton.style.display =
@@ -479,6 +534,7 @@ async function adminLogin() {
     console.error(error);
 
     isAdmin = false;
+
 
     adminStatus.textContent =
       "Login failed ❌ " +
@@ -508,6 +564,7 @@ async function adminLogout() {
   adminStatus.textContent =
     "Admin logged out.";
 
+
   adminLoginButton.style.display =
     "block";
 
@@ -520,7 +577,7 @@ async function adminLogout() {
 
 
 /* =========================
-   CHECK EXISTING SESSION
+   CHECK ADMIN SESSION
 ========================= */
 
 async function checkAdminSession() {
@@ -534,11 +591,13 @@ async function checkAdminSession() {
 
     isAdmin = true;
 
+
     adminLoginButton.style.display =
       "none";
 
     adminLogoutButton.style.display =
       "block";
+
 
     adminStatus.textContent =
       "Admin is logged in 🔐";
@@ -548,7 +607,6 @@ async function checkAdminSession() {
     isAdmin = false;
 
   }
-
 }
 
 
@@ -580,7 +638,8 @@ function openPreview(url, type) {
     const image =
       document.createElement("img");
 
-    image.src = url;
+    image.src =
+      url;
 
     image.className =
       "preview-media";
@@ -598,14 +657,17 @@ function openPreview(url, type) {
     const video =
       document.createElement("video");
 
-    video.src = url;
+    video.src =
+      url;
 
     video.className =
       "preview-media";
 
-    video.controls = true;
+    video.controls =
+      true;
 
-    video.autoplay = true;
+    video.autoplay =
+      true;
 
 
     overlay.appendChild(
@@ -640,7 +702,9 @@ function openPreview(url, type) {
   function escapeHandler(event) {
 
     if (event.key === "Escape") {
+
       closePreview();
+
     }
 
   }
@@ -659,7 +723,9 @@ function openPreview(url, type) {
       if (
         event.target === overlay
       ) {
+
         closePreview();
+
       }
 
     }
