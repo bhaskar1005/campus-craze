@@ -2,154 +2,162 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  }
+}
 
 body {
-font-family: Arial, sans-serif;
-background: #f5f7ff;
-color: #222;
+  font-family: Arial, sans-serif;
+  background: #f5f7ff;
+  color: #222;
 }
 
 header {
-background: #4f46e5;
-color: white;
-text-align: center;
-padding: 35px 15px;
+  background: #4f46e5;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
 }
 
 header h1 {
-font-size: 38px;
-margin-bottom: 10px;
+  font-size: 36px;
+  margin-bottom: 8px;
 }
 
 header p {
-font-size: 17px;
+  font-size: 17px;
 }
 
 main {
-width: min(1000px, 92%);
-margin: 30px auto;
+  max-width: 1000px;
+  margin: auto;
+  padding: 30px 20px;
 }
 
 .hero,
 .upload-box,
 .gallery-section {
-background: white;
-border-radius: 16px;
-padding: 28px;
-margin-bottom: 25px;
-box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+  background: white;
+  padding: 30px 20px;
+  margin-bottom: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .hero {
-text-align: center;
+  text-align: center;
 }
 
 .hero h2,
-.upload-box h2 {
-margin-bottom: 12px;
+.upload-box h2,
+.gallery-section h2 {
+  margin-bottom: 12px;
 }
 
 .hero p {
-color: #666;
+  color: #666;
+}
+
+.upload-box {
+  text-align: center;
 }
 
 input[type="file"] {
-width: 100%;
-padding: 12px;
-border: 1px solid #ddd;
-border-radius: 9px;
-margin: 15px 0;
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
 
-button {
-background: #4f46e5;
-color: white;
-border: none;
-padding: 12px 22px;
-border-radius: 9px;
-font-size: 16px;
-cursor: pointer;
+button,
+.download-button {
+  display: inline-block;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-button:hover {
-background: #3730a3;
+button:hover,
+.download-button:hover {
+  background: #3730a3;
 }
 
 button:disabled {
-opacity: 0.6;
-cursor: not-allowed;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 #uploadStatus {
-margin-top: 15px;
-font-weight: bold;
+  margin-top: 15px;
+  font-weight: bold;
 }
 
 .gallery-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
 #gallery {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-gap: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
 }
 
 .gallery-item {
-background: #f7f7ff;
-border-radius: 12px;
-overflow: hidden;
-padding-bottom: 12px;
+  background: #f8f8ff;
+  padding: 12px;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .gallery-item img,
 .gallery-item video {
-width: 100%;
-height: 220px;
-object-fit: cover;
-display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .gallery-item p {
-padding: 10px 12px;
-word-break: break-word;
+  margin: 10px 0;
+  word-break: break-word;
 }
 
 .download-button {
-display: inline-block;
-margin-left: 12px;
-background: #4f46e5;
-color: white;
-text-decoration: none;
-padding: 8px 12px;
-border-radius: 7px;
-font-size: 14px;
+  font-size: 14px;
+  padding: 9px 14px;
 }
 
 footer {
-text-align: center;
-padding: 25px;
-color: #666;
+  text-align: center;
+  padding: 25px;
+  color: #666;
 }
 
 @media (max-width: 600px) {
-header h1 {
-font-size: 29px;
-}
+  header h1 {
+    font-size: 28px;
+  }
 
-.hero,
-.upload-box,
-.gallery-section {
-padding: 20px;
-}
+  main {
+    padding: 20px 12px;
+  }
 
-.gallery-header {
-flex-direction: column;
-align-items: flex-start;
-gap: 12px;
-}
+  .gallery-header {
+    flex-direction: column;
+  }
+
+  .gallery-item img,
+  .gallery-item video {
+    height: 200px;
+  }
 }
