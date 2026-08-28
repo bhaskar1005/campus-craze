@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Campus Craze</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -17,46 +18,46 @@
 
   <main>
 
-```
-<section class="hero">
-  <h2>Welcome to Campus Craze ❤️</h2>
-  <p>Share your beautiful campus photos and videos with everyone.</p>
-</section>
+    <section class="hero">
+      <h2>Welcome to Campus Craze ❤️</h2>
+      <p>
+        Share your beautiful campus photos and videos with everyone.
+      </p>
+    </section>
 
-<section class="upload-box">
+    <section class="upload-box">
 
-  <h2>📤 Upload Photo / Video</h2>
+      <h2>📤 Upload Photo / Video</h2>
 
-  <input
-    type="file"
-    id="mediaFile"
-    accept="image/*,video/*"
-  >
+      <input
+        type="file"
+        id="mediaFile"
+        accept="image/*,video/*"
+      >
 
-  <button id="uploadButton">
-    Upload 🚀
-  </button>
+      <button id="uploadButton">
+        Upload 🚀
+      </button>
 
-  <p id="uploadStatus"></p>
+      <p id="uploadStatus"></p>
 
-</section>
+    </section>
 
-<section class="gallery-section">
+    <section class="gallery-section">
 
-  <div class="gallery-header">
-    <h2>🖼️ Campus Gallery</h2>
+      <div class="gallery-header">
+        <h2>🖼️ Campus Gallery</h2>
 
-    <button id="refreshButton">
-      🔄 Refresh
-    </button>
-  </div>
+        <button id="refreshButton">
+          🔄 Refresh
+        </button>
+      </div>
 
-  <div id="gallery">
-    <p>Loading gallery...</p>
-  </div>
+      <div id="gallery">
+        <p>Loading gallery...</p>
+      </div>
 
-</section>
-```
+    </section>
 
   </main>
 
@@ -64,9 +65,11 @@
     <p>© 2026 Campus Craze</p>
   </footer>
 
+  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <script src="script.js"></script>
+  <!-- Our JavaScript -->
+  <script src="./script.js"></script>
 
 </body>
 </html>
