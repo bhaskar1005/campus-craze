@@ -599,3 +599,129 @@ footer p {
   }
 
 }
+/* =========================
+   PHOTO / VIDEO FULL-SCREEN PREVIEW
+========================= */
+
+/* Gallery media clickable */
+.gallery-item img,
+.gallery-item video {
+  cursor: zoom-in;
+}
+
+
+/* Full-screen dark background */
+.preview-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  background: rgba(0, 0, 0, 0.95);
+
+  animation: previewFadeIn 0.2s ease;
+}
+
+
+/* Preview image / video */
+.preview-media {
+  max-width: 95vw;
+  max-height: 90vh;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+
+  border-radius: 12px;
+
+  box-shadow: 0 20px 70px rgba(0, 0, 0, 0.6);
+}
+
+
+/* Close button */
+.preview-close {
+  position: absolute;
+
+  top: 20px;
+  right: 25px;
+
+  width: 48px;
+  height: 48px;
+
+  border: 1px solid rgba(255,255,255,0.3);
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,0.12);
+
+  color: white;
+
+  font-size: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  z-index: 100000;
+
+  transition: all 0.2s ease;
+}
+
+
+.preview-close:hover {
+  background: rgba(255,255,255,0.25);
+
+  transform: scale(1.08);
+}
+
+
+/* Fade animation */
+@keyframes previewFadeIn {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+
+/* =========================
+   MOBILE PREVIEW
+========================= */
+
+@media (max-width: 600px) {
+
+  .preview-overlay {
+    padding: 12px;
+  }
+
+  .preview-media {
+    max-width: 100vw;
+    max-height: 85vh;
+
+    border-radius: 8px;
+  }
+
+  .preview-close {
+    top: 12px;
+    right: 12px;
+
+    width: 42px;
+    height: 42px;
+
+    font-size: 19px;
+  }
+
+}
