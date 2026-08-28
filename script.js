@@ -1,6 +1,7 @@
-javascript
 const SUPABASE_URL = "https://emskvumpsrgpzsvqaqal.supabase.co";
-const SUPABASE_KEY = "sb_publishable_tZYQG_Iv43JxwPEAnLBv9g_0OREh28M";
+
+const SUPABASE_KEY =
+  "sb_publishable_tZYQG_Iv43JxwPEAnLBv9g_0OREh28M";
 
 const BUCKET = "campus-media";
 
@@ -8,6 +9,7 @@ const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
+
 
 const fileInput = document.getElementById("mediaFile");
 const uploadButton = document.getElementById("uploadButton");
@@ -17,7 +19,7 @@ const refreshButton = document.getElementById("refreshButton");
 
 
 /* =========================
-   UPLOAD PHOTO / VIDEO
+   UPLOAD MEDIA
 ========================= */
 
 async function uploadMedia() {
@@ -31,8 +33,10 @@ async function uploadMedia() {
   }
 
   uploadButton.disabled = true;
+
   uploadStatus.textContent =
     "Uploading... ⏳";
+
 
   try {
 
@@ -42,8 +46,10 @@ async function uploadMedia() {
         "_"
       );
 
+
     const filePath =
       Date.now() + "-" + safeName;
+
 
     const { error } =
       await supabaseClient.storage
@@ -53,20 +59,26 @@ async function uploadMedia() {
           file,
           {
             cacheControl: "3600",
-            upsert: false
+            upsert: false,
+            contentType: file.type
           }
         );
+
 
     if (error) {
       throw error;
     }
 
+
     uploadStatus.textContent =
       "Upload successful! 🎉";
 
+
     fileInput.value = "";
 
+
     await loadGallery();
+
 
   } catch (error) {
 
@@ -76,11 +88,13 @@ async function uploadMedia() {
       "Upload failed ❌ " +
       error.message;
 
+
   } finally {
 
     uploadButton.disabled = false;
 
   }
+
 }
 
 
@@ -92,6 +106,7 @@ async function loadGallery() {
 
   gallery.innerHTML =
     "<p>Loading gallery... ⏳</p>";
+
 
   try {
 
@@ -109,11 +124,14 @@ async function loadGallery() {
           }
         );
 
+
     if (error) {
       throw error;
     }
 
+
     gallery.innerHTML = "";
+
 
     if (!data || data.length === 0) {
 
@@ -121,12 +139,9 @@ async function loadGallery() {
         "<p>No photos or videos yet.</p>";
 
       return;
+
     }
 
-
-    /* =========================
-       EACH FILE
-    ========================= */
 
     data.forEach(file => {
 
@@ -145,17 +160,16 @@ async function loadGallery() {
       const { data: publicData } =
         supabaseClient.storage
           .from(BUCKET)
-          .getPublicUrl(
-            file.name
-          );
+          .getPublicUrl(file.name);
+
 
       const url =
         publicData.publicUrl;
 
 
-      /* =========================
+      /* =====================
          PHOTO
-      ========================= */
+      ===================== */
 
       if (
         /\.(jpg|jpeg|png|gif|webp|bmp)$/i
@@ -168,7 +182,7 @@ async function loadGallery() {
         img.src = url;
 
         img.alt =
-          file.name;
+          "Campus memory";
 
         img.loading =
           "lazy";
@@ -178,9 +192,9 @@ async function loadGallery() {
       }
 
 
-      /* =========================
+      /* =====================
          VIDEO
-      ========================= */
+      ===================== */
 
       else if (
         /\.(mp4|webm|mov|ogg)$/i
@@ -192,8 +206,7 @@ async function loadGallery() {
 
         video.src = url;
 
-        video.controls =
-          true;
+        video.controls = true;
 
         video.preload =
           "metadata";
@@ -203,74 +216,50 @@ async function loadGallery() {
       }
 
 
-      /* =========================
-         FILE NAME
-      ========================= */
-
-      const name =
-        document.createElement("p");
-
-      name.textContent =
-        file.name;
-
-      item.appendChild(name);
-
-
-      /* =========================
+      /* =====================
          DATE & TIME
-      ========================= */
-
-      const date =
-        document.createElement("p");
-
-      date.className =
-        "media-date";
+      ===================== */
 
       if (file.created_at) {
 
-        const uploadedDate =
-          new Date(
-            file.created_at
-          );
+        const date =
+          new Date(file.created_at);
+
 
         const dateText =
-          uploadedDate.toLocaleDateString(
+          date.toLocaleString(
             "en-IN",
             {
               day: "2-digit",
               month: "short",
-              year: "numeric"
-            }
-          );
-
-        const timeText =
-          uploadedDate.toLocaleTimeString(
-            "en-IN",
-            {
+              year: "numeric",
               hour: "2-digit",
-              minute: "2-digit"
+              minute: "2-digit",
+              hour12: true
             }
           );
 
-        date.textContent =
-          "📅 " +
-          dateText +
-          " • " +
-          timeText;
 
-      } else {
+        const dateElement =
+          document.createElement("p");
 
-        date.textContent =
-          "📅 Date unavailable";
+        dateElement.className =
+          "media-date";
+
+        dateElement.textContent =
+          "📅 " + dateText;
+
+
+        item.appendChild(
+          dateElement
+        );
 
       }
 
-      item.appendChild(date);
 
-
-      /* =========================
+      /* =====================
          DOWNLOAD BUTTON
-      ========================= */
+      ===================== */
 
       const download =
         document.createElement("a");
@@ -282,7 +271,7 @@ async function loadGallery() {
         "_blank";
 
       download.rel =
-        "noopener";
+        "noopener noreferrer";
 
       download.className =
         "download-button";
@@ -290,18 +279,18 @@ async function loadGallery() {
       download.textContent =
         "⬇️ Download";
 
+
       item.appendChild(
         download
       );
 
-
-      /* ADD TO GALLERY */
 
       gallery.appendChild(
         item
       );
 
     });
+
 
   } catch (error) {
 
@@ -313,6 +302,7 @@ async function loadGallery() {
       "</p>";
 
   }
+
 }
 
 
@@ -325,6 +315,7 @@ uploadButton.addEventListener(
   uploadMedia
 );
 
+
 refreshButton.addEventListener(
   "click",
   loadGallery
@@ -332,7 +323,7 @@ refreshButton.addEventListener(
 
 
 /* =========================
-   PAGE LOAD
+   LOAD WHEN PAGE OPENS
 ========================= */
 
 window.addEventListener(
