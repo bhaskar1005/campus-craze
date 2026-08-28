@@ -104,12 +104,26 @@
 
       </div>
 
+<div class="file-picker">
 
-      <input
-        type="file"
-        id="mediaFile"
-        accept="image/jpeg,image/png,image/jpg,image/webp,image/gif"
-        multiple
+  <label for="mediaFile" class="choose-button">
+    📸 Choose Photos
+  </label>
+
+  <input
+    type="file"
+    id="mediaFile"
+    accept="image/*"
+    multiple 
+    
+  >
+
+  <p id="selectedFiles">
+    No photos selected
+  </p>
+
+</div>
+      
       >
 
 
