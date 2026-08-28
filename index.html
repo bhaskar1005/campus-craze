@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +13,8 @@
 
 <body>
 
+  <!-- HEADER -->
+
   <header class="top-header">
 
     <div class="brand">
@@ -25,41 +28,41 @@
 
     </div>
 
-  </header> 
+  </header>
 
-  
-<!-- ADMIN LOGIN -->
 
-<section class="admin-login-box">
+  <!-- ADMIN LOGIN -->
 
-  <h2>🔐 Admin</h2>
+  <section class="admin-login-box">
 
-  <input
-    type="email"
-    id="adminEmail"
-    placeholder="Admin email"
-  >
+    <h2>🔐 Admin</h2>
 
-  <input
-    type="password"
-    id="adminPassword"
-    placeholder="Admin password"
-  >
+    <input
+      type="email"
+      id="adminEmail"
+      placeholder="Admin email"
+    >
 
-  <button id="adminLoginButton">
-    🔐 Admin Login
-  </button>
+    <input
+      type="password"
+      id="adminPassword"
+      placeholder="Admin password"
+    >
 
-  <button
-    id="adminLogoutButton"
-    style="display:none;"
-  >
-    Logout
-  </button>
+    <button id="adminLoginButton">
+      🔐 Admin Login
+    </button>
 
-  <p id="adminStatus"></p>
+    <button
+      id="adminLogoutButton"
+      style="display:none;"
+    >
+      Logout
+    </button>
 
-</section>
+    <p id="adminStatus"></p>
+
+  </section>
 
 
   <main>
@@ -98,39 +101,43 @@
         <span>📤</span>
 
         <div>
-          <h2>Upload Photo </h2>
-          <p>Share a memory from our campus</p>
+          <h2>Upload Photos</h2>
+          <p>Share memories from our campus</p>
         </div>
 
       </div>
 
-<div class="file-picker">
 
-  <label for="mediaFile" class="choose-button">
-    📸 Choose Photos
-  </label>
+      <!-- MULTIPLE PHOTO SELECT -->
 
-  <input
-    type="file"
-    id="mediaFile"
-    accept="image/*"
-    multiple 
-    
-  >
+      <div class="file-picker">
 
-  <p id="selectedFiles">
-    No photos selected
-  </p>
+        <label
+          for="mediaFile"
+          class="choose-button"
+        >
+          📸 Choose Photos
+        </label>
 
-</div>
-      
-      >
+        <input
+          type="file"
+          id="mediaFile"
+          accept="image/*"
+          multiple
+        >
 
+        <p id="selectedFiles">
+          No photos selected
+        </p>
+
+      </div>
+
+
+      <!-- UPLOAD BUTTON -->
 
       <button id="uploadButton">
         🚀 Upload Now
       </button>
-
 
       <p id="uploadStatus"></p>
 
@@ -163,7 +170,11 @@
 
 
       <div id="gallery">
-        <p>Loading gallery... ⏳</p>
+
+        <p>
+          Loading gallery... ⏳
+        </p>
+
       </div>
 
     </section>
@@ -199,3 +210,4 @@
 </body>
 
 </html>
+```
