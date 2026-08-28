@@ -1,4 +1,3 @@
-```javascript
 const SUPABASE_URL = "https://emskvumpsrgpzsvqaqal.supabase.co";
 const SUPABASE_KEY = "sb_publishable_tZYQG_Iv43JxwPEAnLBv9g_0OREh28M";
 
