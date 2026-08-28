@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,69 +7,106 @@
 
   <title>Campus Craze</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 
-  <header>
-    <h1>🎓 Campus Craze</h1>
-    <p>Our Memories • Our Campus • Our Moments 📸🎥</p>
+  <header class="top-header">
+    <div class="brand">
+      <div class="logo">🎓</div>
+      <div>
+        <h1>Campus Craze</h1>
+        <p>Our Memories • Our Campus • Our Moments</p>
+      </div>
+    </div>
   </header>
 
   <main>
 
-    <section class="hero">
-      <h2>Welcome to Campus Craze ❤️</h2>
-      <p>
-        Share your beautiful campus photos and videos with everyone.
-      </p>
-    </section>
+```
+<section class="hero">
+  <div class="hero-content">
+    <span class="badge">📸 CAMPUS MEMORIES</span>
 
-    <section class="upload-box">
+    <h2>Capture the Moments.<br>Keep the Memories.</h2>
 
-      <h2>📤 Upload Photo / Video</h2>
+    <p>
+      Share your favourite campus photos and videos
+      with everyone.
+    </p>
 
-      <input
-        type="file"
-        id="mediaFile"
-        accept="image/*,video/*"
-      >
+    <a href="#upload" class="hero-button">
+      📤 Upload Memories
+    </a>
+  </div>
+</section>
 
-      <button id="uploadButton">
-        Upload 🚀
-      </button>
 
-      <p id="uploadStatus"></p>
+<section class="upload-box" id="upload">
 
-    </section>
+  <div class="section-title">
+    <span>📤</span>
+    <div>
+      <h2>Upload Photo / Video</h2>
+      <p>Share a memory from our campus</p>
+    </div>
+  </div>
 
-    <section class="gallery-section">
+  <input
+    type="file"
+    id="mediaFile"
+    accept="image/*,video/*"
+  >
 
-      <div class="gallery-header">
-        <h2>🖼️ Campus Gallery</h2>
+  <button id="uploadButton">
+    🚀 Upload Now
+  </button>
 
-        <button id="refreshButton">
-          🔄 Refresh
-        </button>
+  <p id="uploadStatus"></p>
+
+</section>
+
+
+<section class="gallery-section">
+
+  <div class="gallery-header">
+
+    <div class="section-title">
+      <span>🖼️</span>
+      <div>
+        <h2>Campus Gallery</h2>
+        <p>Our shared memories</p>
       </div>
+    </div>
 
-      <div id="gallery">
-        <p>Loading gallery...</p>
-      </div>
+    <button id="refreshButton">
+      🔄 Refresh
+    </button>
 
-    </section>
+  </div>
+
+  <div id="gallery">
+    <p>Loading gallery... ⏳</p>
+  </div>
+
+</section>
+```
 
   </main>
 
   <footer>
+    <h3>🎓 Campus Craze</h3>
+    <p>Made with ❤️ for our campus memories</p>
     <p>© 2026 Campus Craze</p>
   </footer>
 
   <!-- Supabase -->
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- Our JavaScript -->
+  <!-- Website JavaScript -->
+
   <script src="./script.js"></script>
 
 </body>
