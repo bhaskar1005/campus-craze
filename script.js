@@ -1,7 +1,5 @@
 const SUPABASE_URL = "https://emskvumpsrgpzsvqaqal.supabase.co";
-
-const SUPABASE_KEY =
-  "sb_publishable_tZYQG_Iv43JxwPEAnLBv9g_0OREh28M";
+const SUPABASE_KEY = "sb_publishable_tZYQG_Iv43JxwPEAnLBv9g_0OREh28M";
 
 const BUCKET = "campus-media";
 
@@ -9,7 +7,6 @@ const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
-
 
 const fileInput = document.getElementById("mediaFile");
 const uploadButton = document.getElementById("uploadButton");
@@ -19,7 +16,7 @@ const refreshButton = document.getElementById("refreshButton");
 
 
 /* =========================
-   UPLOAD MEDIA
+   UPLOAD
 ========================= */
 
 async function uploadMedia() {
@@ -33,68 +30,49 @@ async function uploadMedia() {
   }
 
   uploadButton.disabled = true;
-
-  uploadStatus.textContent =
-    "Uploading... ⏳";
-
+  uploadStatus.textContent = "Uploading... ⏳";
 
   try {
 
-    const safeName =
-      file.name.replace(
-        /[^a-zA-Z0-9._-]/g,
-        "_"
-      );
-
+    const safeName = file.name.replace(
+      /[^a-zA-Z0-9._-]/g,
+      "_"
+    );
 
     const filePath =
       Date.now() + "-" + safeName;
 
-
     const { error } =
       await supabaseClient.storage
         .from(BUCKET)
-        .upload(
-          filePath,
-          file,
-          {
-            cacheControl: "3600",
-            upsert: false,
-            contentType: file.type
-          }
-        );
-
+        .upload(filePath, file, {
+          cacheControl: "3600",
+          upsert: false
+        });
 
     if (error) {
       throw error;
     }
 
-
     uploadStatus.textContent =
       "Upload successful! 🎉";
 
-
     fileInput.value = "";
 
-
     await loadGallery();
-
 
   } catch (error) {
 
     console.error(error);
 
     uploadStatus.textContent =
-      "Upload failed ❌ " +
-      error.message;
-
+      "Upload failed ❌ " + error.message;
 
   } finally {
 
     uploadButton.disabled = false;
 
   }
-
 }
 
 
@@ -107,31 +85,24 @@ async function loadGallery() {
   gallery.innerHTML =
     "<p>Loading gallery... ⏳</p>";
 
-
   try {
 
     const { data, error } =
       await supabaseClient.storage
         .from(BUCKET)
-        .list(
-          "",
-          {
-            limit: 100,
-            sortBy: {
-              column: "created_at",
-              order: "desc"
-            }
+        .list("", {
+          limit: 100,
+          sortBy: {
+            column: "created_at",
+            order: "desc"
           }
-        );
-
+        });
 
     if (error) {
       throw error;
     }
 
-
     gallery.innerHTML = "";
-
 
     if (!data || data.length === 0) {
 
@@ -139,14 +110,12 @@ async function loadGallery() {
         "<p>No photos or videos yet.</p>";
 
       return;
-
     }
 
 
     data.forEach(file => {
 
       if (!file.name) return;
-
 
       const item =
         document.createElement("div");
@@ -162,14 +131,11 @@ async function loadGallery() {
           .from(BUCKET)
           .getPublicUrl(file.name);
 
-
       const url =
         publicData.publicUrl;
 
 
-      /* =====================
-         PHOTO
-      ===================== */
+      /* PHOTO */
 
       if (
         /\.(jpg|jpeg|png|gif|webp|bmp)$/i
@@ -184,17 +150,13 @@ async function loadGallery() {
         img.alt =
           "Campus memory";
 
-        img.loading =
-          "lazy";
+        img.loading = "lazy";
 
         item.appendChild(img);
-
       }
 
 
-      /* =====================
-         VIDEO
-      ===================== */
+      /* VIDEO */
 
       else if (
         /\.(mp4|webm|mov|ogg)$/i
@@ -212,21 +174,17 @@ async function loadGallery() {
           "metadata";
 
         item.appendChild(video);
-
       }
 
 
-      /* =====================
-         DATE & TIME
-      ===================== */
+      /* DATE & TIME */
 
       if (file.created_at) {
 
         const date =
           new Date(file.created_at);
 
-
-        const dateText =
+        const formattedDate =
           date.toLocaleString(
             "en-IN",
             {
@@ -239,7 +197,6 @@ async function loadGallery() {
             }
           );
 
-
         const dateElement =
           document.createElement("p");
 
@@ -247,28 +204,22 @@ async function loadGallery() {
           "media-date";
 
         dateElement.textContent =
-          "📅 " + dateText;
-
+          "📅 " + formattedDate;
 
         item.appendChild(
           dateElement
         );
-
       }
 
 
-      /* =====================
-         DOWNLOAD BUTTON
-      ===================== */
+      /* DOWNLOAD */
 
       const download =
         document.createElement("a");
 
-      download.href =
-        url;
+      download.href = url;
 
-      download.target =
-        "_blank";
+      download.target = "_blank";
 
       download.rel =
         "noopener noreferrer";
@@ -278,7 +229,6 @@ async function loadGallery() {
 
       download.textContent =
         "⬇️ Download";
-
 
       item.appendChild(
         download
@@ -291,7 +241,6 @@ async function loadGallery() {
 
     });
 
-
   } catch (error) {
 
     console.error(error);
@@ -300,21 +249,18 @@ async function loadGallery() {
       "<p>Gallery Error: " +
       error.message +
       "</p>";
-
   }
-
 }
 
 
 /* =========================
-   BUTTON EVENTS
+   BUTTONS
 ========================= */
 
 uploadButton.addEventListener(
   "click",
   uploadMedia
 );
-
 
 refreshButton.addEventListener(
   "click",
@@ -323,7 +269,7 @@ refreshButton.addEventListener(
 
 
 /* =========================
-   LOAD WHEN PAGE OPENS
+   PAGE LOAD
 ========================= */
 
 window.addEventListener(
