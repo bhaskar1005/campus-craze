@@ -725,3 +725,40 @@ footer p {
   }
 
 }
+/* =========================
+   MULTIPLE PHOTO SELECT
+========================= */
+
+.file-picker {
+  margin-bottom: 18px;
+}
+
+#mediaFile {
+  display: none;
+}
+
+.choose-button {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  text-align: center;
+  border: 2px dashed #4b6cb7;
+  border-radius: 15px;
+  background: #f7f9ff;
+  color: #182848;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.choose-button:hover {
+  background: #eef2ff;
+  transform: translateY(-1px);
+}
+
+#selectedFiles {
+  text-align: center;
+  margin-top: 10px;
+  color: #697386;
+  font-size: 14px;
+}
