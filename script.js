@@ -782,3 +782,23 @@ window.addEventListener(
 
   }
 );
+fileInput.addEventListener("change", () => {
+
+  const count = fileInput.files.length;
+
+  const selectedFiles =
+    document.getElementById("selectedFiles");
+
+  if (count === 0) {
+
+    selectedFiles.textContent =
+      "No photos selected";
+
+  } else {
+
+    selectedFiles.textContent =
+      `${count} photo(s) selected 📸`;
+
+  }
+
+});
