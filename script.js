@@ -1,5 +1,5 @@
 const SUPABASE_URL = "https://emskvumpsrgpzsvqaqal.supabase.co";
-const SUPABASE_KEY = "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+const SUPABASE_KEY = "sb_publishable_tZYQG_Iv43JxwPEAnLBv9g_0OREh28M";
 
 const BUCKET = "campus-media";
 
